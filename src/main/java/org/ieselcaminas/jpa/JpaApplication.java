@@ -22,22 +22,22 @@ public class JpaApplication implements CommandLineRunner {
 	//En este método definimos nuestro propio código
 	@Override
 	public void run(String... args) {
-		// Código mío
+		// Código del ejemplo:
 		Customer c = new Customer("Pepe", "García");
 		//El repositorio es donde están todos los métodos que tratan con la base de datos.
-		//En este caso está haciendo un INSERT ya que el objecto es nuevo
+		//En este caso está haciendo un INSERT, ya que el objeto es nuevo
 		this.customerRepository.save(c);
 
-		//Pero también puedeo modificar un registro
+		//Pero también puedo modificar un registro
 		c.setFirstName("Juan");
 		this.customerRepository.save(c);
 
-		//Vamos a seleccionar el Customer con id 1
+		//Vamos a seleccionar el Customer con ID 1
 		//Se escribe 1L porque es un dato escrito a mano de tipo long
 		Optional<Customer> clienteOp = this.customerRepository.findById(1L);
 		clienteOp.ifPresent(System.out::println);
 
-		//Si queremos acceder al objeto Customer
+		//Si queremos acceder al objeto Customer, hacemos:
 		if (clienteOp.isPresent()){
 			c = clienteOp.get();
 			System.out.println(c);
